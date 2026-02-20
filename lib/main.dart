@@ -30,6 +30,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  bool didUserClickSearchButton=false;
 
   void _incrementCounter() {
     log('$_counter ');
@@ -43,8 +44,13 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.search))],
+        title:(didUserClickSearchButton)?TextField():
+        Text(widget.title),
+        actions: [IconButton(onPressed: () {
+          setState(() {
+            didUserClickSearchButton=!didUserClickSearchButton;
+          });
+        }, icon: Icon(Icons.search))],
       ),
       body: Center(
         child: Column(
